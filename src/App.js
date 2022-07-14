@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import Coin from './components/Coin';
 import Navbar from './components/Navbar';
+import CoinCard from './components/CoinCard';
+import Box from '@mui/material/Box';
 import './App.css';
 
 const App = () => {
@@ -24,11 +25,11 @@ const App = () => {
   return (
     <div className='App'>
       <Navbar searchWordFunc={SearchWord => setSearchWord(SearchWord)}/>
-      <div className='ctyptoDisplay'>
+      <Box>
         {filteredCoins.map((coin, index)=>{
-          return <Coin key={index} name={coin.name} icon={coin.icon} price={coin.price} symbol={coin.symbol} />
+          return <CoinCard key={index} name={coin.name} icon={coin.icon} price={coin.price} symbol={coin.symbol} />
         })}
-      </div>
+      </Box>
     </div>
   )
 }

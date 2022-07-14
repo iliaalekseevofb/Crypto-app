@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import Coin from './components/Coin';
+import Navbar from './components/Navbar';
 import './App.css';
 
 const App = () => {
@@ -22,14 +23,15 @@ const App = () => {
 
   return (
     <div className='App'>
+      <Navbar />
       <div className='cryptoHeader'>
         <input id = 'inputValue' type='text' placeholder='Bitcoin...' onChange={() =>
           {setSearchWord(document.getElementById('inputValue').value)}}
         />
       </div>
       <div className='ctyptoDisplay'>{
-        filteredCoins.map((coin)=>{
-          return <Coin name={coin.name} icon={coin.icon} price={coin.price} symbol={coin.symbol} />
+        filteredCoins.map((coin, index)=>{
+          return <Coin key={index} name={coin.name} icon={coin.icon} price={coin.price} symbol={coin.symbol} />
         })
       }</div>
     </div>

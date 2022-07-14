@@ -22,7 +22,7 @@ body {
 .cryptoHeader {
   width: 100%;
   height: 200px;
-  background-color: rgb(255, 196, 0);
+  background-color: #ffc400;
   display: flex;
   justify-content: center;
   align-items: center;

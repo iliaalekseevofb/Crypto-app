@@ -23,17 +23,12 @@ const App = () => {
 
   return (
     <div className='App'>
-      <Navbar />
-      <div className='cryptoHeader'>
-        <input id = 'inputValue' type='text' placeholder='Bitcoin...' onChange={() =>
-          {setSearchWord(document.getElementById('inputValue').value)}}
-        />
-      </div>
-      <div className='ctyptoDisplay'>{
-        filteredCoins.map((coin, index)=>{
+      <Navbar searchWordFunc={SearchWord => setSearchWord(SearchWord)}/>
+      <div className='ctyptoDisplay'>
+        {filteredCoins.map((coin, index)=>{
           return <Coin key={index} name={coin.name} icon={coin.icon} price={coin.price} symbol={coin.symbol} />
-        })
-      }</div>
+        })}
+      </div>
     </div>
   )
 }

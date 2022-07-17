@@ -38,7 +38,14 @@ const App = () => {
         ? <Box>
             {filteredCoins.map((coin, index)=>{
               return (
-                <CoinCard key={index} name={coin.name} icon={coin.icon} price={coin.price} symbol={coin.symbol} />
+                <CoinCard key={index}
+                  name={coin.name}
+                  icon={coin.icon}
+                  price={coin.price}
+                  symbol={coin.symbol}
+                  marketCap={coin.marketCap}
+                  priceChange1w={coin.priceChange1w}
+                />
             )})}
           </Box>
         : <Grid container rowSpacing={5} columnSpacing={{ xs: 3, sm: 4, md: 5 }}>

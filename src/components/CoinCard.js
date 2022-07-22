@@ -4,13 +4,13 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-const CoinCard = ({name, icon, price, symbol, marketCap, priceChange1w}) => {
+const CoinCard = ({name, icon, price, symbol, priceChange1w}) => {
   return (
     <Card sx={{
       minWidth: "250px",
       backgroundColor: '#fafafa',
       boxShadow: '0px 10px 21px 0px rgba(0, 0, 0, 0.21)',
-      borderRadius: '10px'
+      borderRadius: '10px',
     }}>
       <CardContent>
         <Box>
@@ -20,6 +20,7 @@ const CoinCard = ({name, icon, price, symbol, marketCap, priceChange1w}) => {
         </Box>
         <Box>
           <Typography>Price: {price}</Typography>
+          <Typography>Price change (1 week): {priceChange1w}</Typography>
         </Box>
       </CardContent>
     </Card>

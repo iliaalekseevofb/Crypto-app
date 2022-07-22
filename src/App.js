@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import Navbar from './components/Navbar';
-import CoinCard from './components/CoinCard';
+import NewCoinCard from './components/NewCoinCard';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import './App.css';
@@ -38,12 +38,12 @@ const App = () => {
         ? <Box>
             {filteredCoins.map((coin, index)=>{
               return (
-                <CoinCard key={index}
+                <NewCoinCard 
+                  key={index}
                   name={coin.name}
                   icon={coin.icon}
                   price={coin.price}
                   symbol={coin.symbol}
-                  marketCap={coin.marketCap}
                   priceChange1w={coin.priceChange1w}
                 />
             )})}
@@ -52,7 +52,14 @@ const App = () => {
             {filteredCoins.map((coin, index)=>{
               return (
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <CoinCard key={index} name={coin.name} icon={coin.icon} price={coin.price} symbol={coin.symbol} />
+                  <NewCoinCard 
+                    key={index} 
+                    name={coin.name} 
+                    icon={coin.icon} 
+                    price={coin.price} 
+                    symbol={coin.symbol} 
+                    priceChange1w={coin.priceChange1w}
+                  />
                 </Grid>)
             })}
           </Grid>

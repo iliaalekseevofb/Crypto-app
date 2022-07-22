@@ -9,12 +9,12 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { teal } from '@mui/material/colors';
+import { indigo } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: teal[400]
+      main: indigo[700]
     }
   }
 });

@@ -14,7 +14,7 @@ export default function NewCoinCard({name, icon, price, symbol, priceChange1w}) 
         variant="outlined"
         row
         sx={{
-          minWidth: '320px',
+          minWidth: '300px',
           gap: 2,
           '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
         }}
@@ -37,17 +37,28 @@ export default function NewCoinCard({name, icon, price, symbol, priceChange1w}) 
                 href="#interactive-card"
                 sx={{ color: 'text.tertiary' }}
               >
-                Price: {price} $
+                Price: {price.toFixed(5)} $
               </Link>
             </Typography>
-            <Chip
-              variant="outlined"
-              color="primary"
-              size="sm"
-              sx={{ pointerEvents: 'none' }}
-            >
-              Price change (1 week): {priceChange1w}%
-            </Chip>
+            {console.log(typeof(priceChange1w))}
+            {priceChange1w >= 0
+            ? <Chip
+                variant='outlined'
+                color='success'
+                size='md'
+                sx={{ pointerEvents: 'none' }}
+              >
+                Week price change: +{priceChange1w}%
+              </Chip>
+            : <Chip
+                variant='outlined'
+                color='warning'
+                size='md'
+                sx={{ pointerEvents: 'none' }}
+              >
+                Week price change: {priceChange1w}%
+              </Chip>
+            }
           </Box>
         </Box>
       </Card>

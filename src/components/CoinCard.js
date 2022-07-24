@@ -1,30 +1,67 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import AspectRatio from '@mui/joy/AspectRatio';
+import { CssVarsProvider } from '@mui/joy/styles';
+import Box from '@mui/joy/Box';
+import Link from '@mui/joy/Link';
+import Card from '@mui/joy/Card';
+import Chip from '@mui/joy/Chip';
+import Typography from '@mui/joy/Typography';
 
-const CoinCard = ({name, icon, price, symbol, priceChange1w}) => {
+export default function CoinCard({name, icon, price, priceChange1w}) {
   return (
-    <Card sx={{
-      minWidth: "250px",
-      backgroundColor: '#fafafa',
-      boxShadow: '0px 10px 21px 0px rgba(0, 0, 0, 0.21)',
-      borderRadius: '10px',
-    }}>
-      <CardContent>
+    <CssVarsProvider>
+      <Card
+        variant="outlined"
+        row
+        sx={{
+          minWidth: '300px',
+          gap: 2,
+          '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
+        }}
+      >
+        <AspectRatio ratio="1" sx={{ width: 90 }}>
+          <img
+            src={icon}
+            alt=""
+          />
+        </AspectRatio>
         <Box>
-          <img className='icon' src={icon} alt='icon' />
-          <Typography>Name: {name}</Typography>
-          <Typography>Symbol: {symbol}</Typography>
+          <Box sx={{ ml: 0.5 }}>
+            <Typography level="h2" fontSize="lg" id="card-description" mb={0.5}>
+              {name}
+            </Typography>
+            <Typography fontSize="md" aria-describedby="card-description" mb={1}>
+              <Link
+                overlay
+                underline="none"
+                href="#interactive-card"
+                sx={{ color: 'text.tertiary' }}
+              >
+                Price: {price.toFixed(5)} $
+              </Link>
+            </Typography>
+            {console.log(typeof(priceChange1w))}
+            {priceChange1w >= 0
+            ? <Chip
+                variant='outlined'
+                color='success'
+                size='md'
+                sx={{ pointerEvents: 'none' }}
+              >
+                Week change: +{priceChange1w}%
+              </Chip>
+            : <Chip
+                variant='outlined'
+                color='warning'
+                size='md'
+                sx={{ pointerEvents: 'none' }}
+              >
+                Week change: {priceChange1w}%
+              </Chip>
+            }
+          </Box>
         </Box>
-        <Box>
-          <Typography>Price: {price}</Typography>
-          <Typography>Price change (1 week): {priceChange1w}</Typography>
-        </Box>
-      </CardContent>
-    </Card>
-  )
+      </Card>
+    </CssVarsProvider>
+  );
 }
-
-export default CoinCard

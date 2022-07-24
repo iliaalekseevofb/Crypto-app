@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import Navbar from './components/Navbar';
-import NewCoinCard from './components/NewCoinCard';
+import CoinCard from './components/CoinCard';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { createTheme, ThemeProvider } from '@mui/system';
 import './App.css';
 
 const App = () => {
@@ -23,48 +24,60 @@ const App = () => {
     return coin.name.toLowerCase().includes(searchWord);
   })
 
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1450,
+      },
+    },
+  });
+
   return (
     <div className='App'>
-      <Navbar searchWordFunc={SearchWord => setSearchWord(SearchWord)}/>
-      <Box sx={{
-        padding: {xs: 4, md: 5},
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}
-      >
-        {filteredCoins.length < 0
-        ? <Box>
-            {filteredCoins.map((coin, index)=>{
-              return (
-                <NewCoinCard 
-                  key={index}
-                  name={coin.name}
-                  icon={coin.icon}
-                  price={coin.price}
-                  symbol={coin.symbol}
-                  priceChange1w={coin.priceChange1w}
-                />
-            )})}
-          </Box>
-        : <Grid container rowSpacing={5} columnSpacing={{ xs: 3, sm: 4, md: 5 }}>
-            {filteredCoins.map((coin, index)=>{
-              return (
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <NewCoinCard 
-                    key={index} 
-                    name={coin.name} 
-                    icon={coin.icon} 
-                    price={coin.price} 
-                    symbol={coin.symbol} 
+      <ThemeProvider theme={theme}>
+        <Navbar searchWordFunc={SearchWord => setSearchWord(SearchWord)}/>
+        <Box sx={{
+          padding: {xs: 4, md: 5},
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+        >
+          {filteredCoins.length < 0
+          ? <Box>
+              {filteredCoins.map((coin, index)=>{
+                return (
+                  <CoinCard 
+                    key={index}
+                    name={coin.name}
+                    icon={coin.icon}
+                    price={coin.price}
                     priceChange1w={coin.priceChange1w}
                   />
-                </Grid>)
-            })}
-          </Grid>
-        }
-      </Box>
+              )})}
+            </Box>
+          : <Grid container rowSpacing={5} columnSpacing={{ xs: 3, sm: 4, md: 5 }}>
+              {filteredCoins.map((coin, index)=>{
+                return (
+                  <Grid item xs={12} md={6} lg={4} xl={3}>
+                    <CoinCard 
+                      key={index} 
+                      name={coin.name} 
+                      icon={coin.icon} 
+                      price={coin.price} 
+                      priceChange1w={coin.priceChange1w}
+                    />
+                  </Grid>)
+              })}
+            </Grid>
+          }
+        </Box>
+      </ThemeProvider>
     </div>
   )
 }
